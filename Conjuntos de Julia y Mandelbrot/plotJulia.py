@@ -4,8 +4,9 @@ from math import floor, ceil
 from Julia import julia, MAX_ITER
 
 def linear_interpolation(color1, color2, t):
+    ''' Hue calculation.
+    '''
     return color1*(1-t)+color2*t
-pass
 
 # Image size (pixels)
 WIDTH = 600
@@ -27,6 +28,7 @@ c = complex(0.285, 0.01)
 histogram = defaultdict(lambda: 0)
 values = {}
 
+# Calculate for each pixel
 for x in range(0, WIDTH):
     for y in range(0, HEIGHT):
         # Convert pixel coordinate to complex number
@@ -38,18 +40,22 @@ for x in range(0, WIDTH):
         if m < MAX_ITER:
             histogram[floor(m)] += 1
 
+# Total histogram
 total = sum(histogram.values())
 hues = []
 h = 0
 
+# Hues
 for i in range(MAX_ITER):
     h += histogram[i] / total
     hues.append(h)
 hues.append(h)
 
+# Create image
 im = Image.new('HSV', (WIDTH, HEIGHT), (0, 0, 0))
 draw = ImageDraw.Draw(im)
 
+# Colouring
 for x in range(0, WIDTH):
     for y in range(0, HEIGHT):
         m = values[(x, y)]
@@ -60,4 +66,5 @@ for x in range(0, WIDTH):
         # Plot the point
         draw.point([x, y], (hue, saturation, value))
 
+# Save the image
 im.convert('RGB').save('Julia.png', 'PNG')

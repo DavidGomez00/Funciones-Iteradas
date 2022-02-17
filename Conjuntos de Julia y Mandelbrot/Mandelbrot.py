@@ -2,13 +2,20 @@ from math import log, log2
 MAX_ITER = 80
 
 def mandelbrot(c):
+    ''' Calculate iterations needed for each piexl.
+    '''
+
+    # parameters
     z = 0
     n = 0
+
+    # Iterate Mandlebrot function
     while abs(z) <= 2 and n < MAX_ITER:
         z = z*z + c
         n += 1
     if n == MAX_ITER:
         return MAX_ITER
+
     # Retornamos esto en vez de n para poder asociar el numero de iteraciones al color
     return n + 1 - log(log2(abs(z)))
 pass

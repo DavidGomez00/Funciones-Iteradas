@@ -11,9 +11,11 @@ RE_END = 1
 IM_START = -1
 IM_END = 1
 
+# Image
 image = Image.new('HSV', (WIDTH, HEIGHT), (0, 0, 0))
 draw = ImageDraw.Draw(image)
 
+# For each pixel
 for x in range(0, WIDTH):
     for y in range(0, HEIGHT):
         # Convierte las coordenadas del pixel a un número
@@ -26,4 +28,6 @@ for x in range(0, WIDTH):
         value = 255 if iteraciones < MAX_ITER else 0
         # Plot the point
         draw.point([x, y], (h, saturacion, value))
+
+# Save image
 image.convert('RGB').save('Mandelbrot.png', 'PNG')
