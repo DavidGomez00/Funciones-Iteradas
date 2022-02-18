@@ -26,8 +26,11 @@ def itera(sentencia):
     ''' Aplica las reglas de la gramática a la sentencia
     de forma iterativa.
     '''
+
     for _ in range(g_iterations):
+        # Nueva sentencia
         nueva_sentencia = ''
+        # Recorre la sentencia
         for caracter in sentencia:
             aux = ''
             # aplica las reglas
@@ -38,24 +41,21 @@ def itera(sentencia):
                 nueva_sentencia += '-'
             elif (caracter == '+'):
                 nueva_sentencia += '+'
-        pass
         sentencia = nueva_sentencia
-    pass
-    print(sentencia)
+
     return sentencia
-pass
 
 def translate(sentencia_final):
     ''' Traduce la sentencia dada a instrucciones de turtle
     para generar el sistema.
     '''
+
     for caracter in sentencia_final:
         if(caracter == 'F'): tortuga.forward(g_forward)
         elif(caracter == '+'): tortuga.right(g_angle)
         elif(caracter == '-'): tortuga.left(g_angle)
-    pass
-pass
 
+# Ejecuta el programa
 sentencia_final = itera(sentencia)
 translate(sentencia_final)
 
