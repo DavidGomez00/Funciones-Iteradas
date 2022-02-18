@@ -2,18 +2,25 @@ from PIL import Image, ImageDraw
 import numpy as np
 import random
 
+# Window
 WIDTH = 600
 HEIGHT = 600
 
 def function(point):
-    return  random.choice(list) @ point
-pass
+    ''' Choose a random function. 
+    '''
+
+    return random.choice(list) @ point
 
 def normalize(n, lowerBound, upperBound, minValue, maxValue):
+    ''' Normalize n between bounds.
+    '''
+
+    # new range
     range = maxValue - minValue
     newRange = upperBound - lowerBound
+
     return (n-minValue)/range * newRange + lowerBound
-pass
 
 if __name__ == '__main__':
     # Create image
@@ -35,7 +42,6 @@ if __name__ == '__main__':
     # Run at least 40 iterations
     for i in range(40):
         p = function(p)
-    pass
 
     # Start tracking the point
     for i in range(points):
@@ -43,8 +49,6 @@ if __name__ == '__main__':
         x = int(normalize(p[0], -300, 300, -1, 1))
         y = int(normalize(p[1], -300, 300, -1, 1))
         pixels[x, y] = 255
-    pass
 
     # Draw image
     img.save("Triangulo_Sierpinski.png")
-pass
